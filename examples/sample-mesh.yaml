@@ -1,0 +1,8 @@
+apiVersion: greymatter.io/v1alpha1
+kind: Mesh
+metadata:
+  name: mesh-sample2
+spec:
+  release_version: '1.7'
+  zone: default-zone
+  install_namespace: demo"

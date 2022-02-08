@@ -1,0 +1,29 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+metadata:
+  name: operator
+deploy:
+  kustomize:
+    paths:
+    - config/context/kubernetes
+profiles:
+- name: kubernetes
+  deploy:
+    kustomize:
+      paths:
+      - config/context/kubernetes
+- name: kubernetes-dev
+  deploy:
+    kustomize:
+      paths:
+      - config/context/kubernetes-dev
+- name: kubernetes-options
+  deploy:
+    kustomize:
+      paths:
+      - config/context/kubernetes-options
+- name: openshift
+  deploy:
+    kustomize:
+      paths:
+      - config/context/openshift

@@ -91,15 +91,7 @@ done
 
 kubectl get pods -n gm-operator
 
-yes_or_no "🔵 Would you like to install a demo mesh?" && echo "
-apiVersion: greymatter.io/v1alpha1
-kind: Mesh
-metadata:
-  name: mesh-sample
-spec:
-  release_version: '1.7'
-  zone: default-zone
-  install_namespace: default" | kubectl apply -f -
+yes_or_no "🔵 Would you like to install a demo mesh?" && kubectl apply -f ./examples/sample-mesh.yaml
 
 echo -e "\n\n"
 

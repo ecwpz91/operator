@@ -14,6 +14,8 @@ mkShell {
 
   shellHook = ''
 trap 'kind stop cluster; kind delete cluster;' EXIT
+kind stop cluster
+kind delete cluster
 docker --version
 if docker --version; then
   echo "Docker Daemon is running"
@@ -96,17 +98,19 @@ apiVersion: greymatter.io/v1alpha1
 kind: Mesh
 metadata:
   name: mesh-sample
-spec:
-  release_version: '1.7'
-  zone: default-zone
-  install_namespace: default" | kubectl apply -f -
+mesh:
+  spec:
+    release_version: '1.7'
+    zone: zone-default-zone
+    install_namespace: default" | kubectl apply -f -
 
 echo -e "\n\n"
 
 echo -e "🔵 Available Commands:\n\tk9s\n\tkubectrl\n\tkustomize\n\ttmux\n\thelm\n\tkubetail\n\tkind\n\n"
 
 export PS1="\[\e[32m\]GM K8S Shell \u@\h \w \n\$ \[\e[m\]"
-
+sleep 10
+kubectl port-forward -n default deployment/control 5555:5555 &
 
   '';
 }
